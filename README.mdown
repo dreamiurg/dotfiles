@@ -1,0 +1,6 @@
+Information
+===========
+
+This is personal settings repo to share my bash aliases and custom functions between servers. Please see .bashrc.sample to get idea on how to use this approach.
+
+More information in [my article](http://demiurg.com.ua/blog/2011/03/27/using-github-to-share-personal-settings-between-servers/) (russian).
