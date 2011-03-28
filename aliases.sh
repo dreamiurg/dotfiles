@@ -16,6 +16,6 @@ alias df='df -kTh'
 
 alias psu='ps -o pid,rss,command -w'
 
-alias l="ls -alFG"
+alias l='ls -alFG'
 
-
+alias mkv='mkvirtualenv --distribute --no-site-packages' 
