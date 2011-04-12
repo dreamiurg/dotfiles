@@ -1,4 +1,4 @@
-# Inlude gloablly defined aliases and functions
+# Include gloablly defined aliases and functions
 source ~/etc/bash-ext/aliases.sh
 source ~/etc/bash-ext/functions.sh
 
