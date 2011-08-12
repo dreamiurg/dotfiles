@@ -20,4 +20,4 @@ alias l='ls -alFG'
 
 alias mkv='mkvirtualenv --distribute --no-site-packages' 
 alias gs='git status'
-alias gl='git lg --all'
+alias gl='git ld --all'
