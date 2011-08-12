@@ -19,6 +19,5 @@ alias psu='ps -o pid,rss,command -w'
 alias l='ls -alFG'
 
 alias mkv='mkvirtualenv --distribute --no-site-packages' 
-
 alias gs='git status'
 alias gl='git lg --all'
