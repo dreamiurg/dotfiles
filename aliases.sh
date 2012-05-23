@@ -1,5 +1,5 @@
 # Filesystem
-alias l='ls -alFG'
+alias l='ls -alFG --color'
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
@@ -23,4 +23,4 @@ alias mkv='mkvirtualenv --distribute --no-site-packages'
 # Git
 alias gs='git status'
 alias gb='git branch'
-alias gl='git ld --all'
+alias gl='git lg1'
