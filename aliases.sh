@@ -15,7 +15,7 @@ alias path='echo -e ${PATH//:/\\n}'
 alias libpath='echo -e ${LD_LIBRARY_PATH//:/\\n}'
 alias psu='ps -o pid,rss,command -w'
 alias more=less
-alias mo='/usr/share/vim/vim73/macros/less.sh'
+alias mnt='mount | column -t | sort -k 3 -d'
 
 # Python
 alias mkv='mkvirtualenv --distribute --no-site-packages' 
