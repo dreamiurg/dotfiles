@@ -6,6 +6,7 @@ alias mv='mv -i'
 alias md='mkdir -p'
 alias du='du -kh'       # Makes a more readable output.
 alias df='df -kTh'
+alias ccd='pushd'
 
 # Other
 alias h='history'
@@ -15,7 +16,6 @@ alias path='echo -e ${PATH//:/\\n}'
 alias libpath='echo -e ${LD_LIBRARY_PATH//:/\\n}'
 alias psu='ps -o pid,rss,command -w'
 alias pss='ps -ef'
-alias more=less
 alias mnt='mount | column -t | sort -k 3 -d'
 
 # Python
