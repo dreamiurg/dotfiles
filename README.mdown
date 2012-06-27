@@ -10,6 +10,7 @@ This is personal settings repo to share my bash aliases and custom functions bet
     sh ~/etc/bash-ext/git-setup.sh
     ln -s ~/etc/bash-ext/.vim ~/.vim
     ln -s ~/etc/bash-ext/.vimrc ~/.vimrc
+    ln -s ~/etc/bash-ext/.screenrc ~/.screenrc
    
 
 More information in [my article](http://demiurg.com.ua/blog/2011/03/27/using-github-to-share-personal-settings-between-servers/) (russian).
