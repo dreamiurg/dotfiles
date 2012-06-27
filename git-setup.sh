@@ -10,3 +10,6 @@ git config --global alias.lg1 "log --graph --all --format=format:'%C(bold blue)%
 git config --global alias.lg2 "log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%cD%C(reset) %C(bold green)(%cr)%C(reset)%C(bold yellow)%d%C(reset)%n'' %C(white)%s%C(reset) %C(bold white)— %cn%C(reset)' --abbrev-commit"
 
 git config --global alias.diffall !"~/etc/git-diffall/git-diffall"
+
+git config --global color.ui always
+git config --global color.diff always
