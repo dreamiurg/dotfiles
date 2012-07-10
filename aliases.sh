@@ -1,5 +1,21 @@
-# Filesystem
-alias l='ls -alFG --color'
+# Detect current OS
+platform='unknown'
+unamestr=`uname`
+if [[ "$unamestr" == 'Linux' ]]; then
+  platform='linux'
+elif [[ "$unamestr" == 'Darwin' ]]; then
+  platform='macos'
+fi
+
+# Filesystem operations
+if [[ $platform == 'linux' ]]; then
+  alias ls='ls --color=auto'
+  alias l='ls -alF --color=auto'
+elif [[ $platform == 'macos' ]]; then
+  alias ls='ls -G'
+  alias l='ls -alFG'
+fi
+
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'

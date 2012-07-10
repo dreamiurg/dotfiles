@@ -1,68 +1,60 @@
-syntax on
-source /usr/share/vim/google/google.vim
-set expandtab
-set shiftwidth=2
-set softtabstop=2
-
-" perforce commands
-command! -nargs=* -complete=file PEdit :!g4 edit %
-command! -nargs=* -complete=file PRevert :!g4 revert %
-command! -nargs=* -complete=file PDiff :!g4 diff %
-
-function! s:CheckOutFile()
- if filereadable(expand("%")) && ! filewritable(expand("%"))
-   let s:pos = getpos('.')
-   let option = confirm("Readonly file, do you want to checkout from p4?"
-         \, "&Yes\n&No", 1, "Question")
-   if option == 1
-     PEdit
-   endif
-   edit!
-   call cursor(s:pos[1:3])
- endif
-endfunction
-au FileChangedRO * nested :call <SID>CheckOutFile()
-
-source /google/src/head/depot/google3/tools/gsearch/contrib/csearch.vim
-
-
-" use Vim settings, rather then Vi settings (much better!)
-" this must be first, because it changes other options as a side effect
-set nocompatible
-
-
-" turn on syntax highlighting
-if !exists("syntax_on")
-	syntax on
-endif
-
-" turn file type detection back on
+filetype off
+call pathogen#runtime_append_all_bundles()
 filetype plugin indent on
 
+set nocompatible
+set modelines=0
+
+syntax on
+
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set expandtab
 
 """" Some simple stuff """"""""""""""""""""""""""""""""""""""""""""""""""""""""
-set showcmd          " display incomplete commands
-set incsearch        " do incremental searching
-set hlsearch         " highlight searching results
-set number           " show line numbers
 set cursorline       " show cursor line
-set nowrap           " turn off line wrap
-set gdefault         " always global regex
-set nobackup         " do not create backup files
-set noswapfile       " do not create swap files
-set nofoldenable     " turn off folding
-set wildmenu         " turn on wildmenu
-set wcm=<Tab>        " wildmenu navigation key
+set hidden
+set incsearch        " do incremental searching
 set laststatus=2     " status line is always visible
-set winminheight=0   " minimum window height (FIXME)
+set nobackup         " do not create backup files
+set nofoldenable     " turn off folding
+set noswapfile       " do not create swap files
+set nowrap           " turn off line wrap
+set number           " show line numbers
+set ruler
+set relativenumber
 set scrolloff=3      " lines count around cursos
-set background=dark  " we want dark and scary interface
+set showcmd          " display incomplete commands
+set showmode
+set ttyfast
+set visualbell
+set wcm=<Tab>        " wildmenu navigation key
+set wildmenu         " turn on wildmenu
+set winminheight=0   " minimum window height (FIXME)
+
+let mapleader = ","
+nnoremap / /\v
+vnoremap / /\v
+set ignorecase
+set smartcase
+set gdefault
+set incsearch
+set showmatch
+set hlsearch
+
+" ,<space> will clear search highlight
+nnoremap <leader><space> :noh<cr>
+nnoremap <tab> %
+vnoremap <tab> %
+" strip all trailing whitespace on ,W
+nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 
 " tabulation settings
 set smarttab
 set autoindent
 
-" allow backspacing over everything in insert mode
+" allow backspacinddg over everything in insert mode
 set backspace=indent,eol,start
 
 " set file encodings
@@ -98,4 +90,5 @@ autocmd WinEnter * call SwitchToBuffer()
 autocmd WinLeave * let &l:statusline = '%<%f'
 
 " gvim colorscheme
-colorscheme ir_black
+set background=dark  " we want dark and scary interface
+colorscheme molokai
