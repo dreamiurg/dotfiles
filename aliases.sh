@@ -35,7 +35,7 @@ alias pss='ps -ef'
 alias mnt='mount | column -t | sort -k 3 -d'
 
 # Python
-alias mkv='mkvirtualenv --distribute --no-site-packages' 
+alias mkv='mkvirtualenv --distribute --no-site-packages'
 
 # Git
 alias gs='git status'
