@@ -10,10 +10,12 @@ fi
 # Filesystem operations
 if [[ $platform == 'linux' ]]; then
   alias ls='ls --color=auto'
-  alias l='ls -alF --color=auto'
+  alias l='ls -lF --color=auto'
+  alias ll='ls -alF --color=auto'
 elif [[ $platform == 'macos' ]]; then
   alias ls='ls -G'
-  alias l='ls -alFG'
+  alias l='ls -lFG'
+  alias ll='ls -alFG'
 fi
 
 alias rm='rm -i'
