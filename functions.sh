@@ -25,7 +25,7 @@ function __define_colors
 
 function __set_prompt
 {
-    export PS1="${GREEN}\u.\h${LIGHTBLUE}"' $(__git_ps1 "(%s) ")'"${BROWN}\w ${DEFAULT}\\$ "
+    export PS1="${GREEN}\u@\h:${BROWN}\w${LIGHTCYAN}"' $(__git_ps1 "(%s) ")'"${DEFAULT}\\$ "
 }
 
 function extract()      # Handy Extract Program.
