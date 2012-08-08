@@ -23,9 +23,14 @@ function __define_colors
     DEFAULT='\[\033[0m\]'
 }
 
+function EXT_COLOR () 
+{ 
+    echo -ne "\[\033[38;5;$1m\]" 
+}
+
 function __set_prompt
 {
-    export PS1="${GREEN}\u@\h:${BROWN}\w${LIGHTCYAN}"' $(__git_ps1 "(%s) ")'"${DEFAULT}\\$ "
+    export PS1="${GREEN}\u@\h:${BROWN}\w`EXT_COLOR 25`"' $(__git_ps1 "(%s) ")'"${DEFAULT}\\$ "
 }
 
 function extract()      # Handy Extract Program.
