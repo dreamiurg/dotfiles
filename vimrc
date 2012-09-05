@@ -91,5 +91,4 @@ autocmd WinEnter * call SwitchToBuffer()
 autocmd WinLeave * let &l:statusline = '%<%f'
 
 " gvim colorscheme
-set background=dark  " we want dark and scary interface
-colorscheme molokai
+colorscheme Tomorrow-Night

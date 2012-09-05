@@ -35,6 +35,7 @@ alias libpath='echo -e ${LD_LIBRARY_PATH//:/\\n}'
 alias psu='ps -o pid,rss,command -w'
 alias pss='ps -ef'
 alias mnt='mount | column -t | sort -k 3 -d'
+alias rebash='source ~/.bashrc'
 
 # Python
 alias mkv='mkvirtualenv --distribute --no-site-packages'
