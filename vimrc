@@ -91,4 +91,4 @@ autocmd WinEnter * call SwitchToBuffer()
 autocmd WinLeave * let &l:statusline = '%<%f'
 
 " gvim colorscheme
-colorscheme Tomorrow-Night
+colorscheme Tomorrow-Night-Bright

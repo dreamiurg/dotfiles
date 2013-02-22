@@ -45,18 +45,29 @@ function __set_prompt ()
   local DIR="${YELLOW}\w"
 	local VENV="${RED}\$(__venv_ps1 '[ve:%s] ')"
   local GIT="${BLUE}\$(__git_ps1 '[git:%s] ')"
-	local END="${DEFAULT}\\$ "
+	local END="${DEFAULT}"
 	
-  export PS1="${USER}:${DIR} ${VENV}${GIT}${END}"
+  export PS_SHORT="${USER}:${DIR} ${VENV}${GIT}${END}\\$ "
+  export PS_LONG="\n${USER} ${DIR} ${VENV}${GIT}${END}\n$ "
+  export PS1=$PS_SHORT
 	
   # disable prompt modification by default ~/.virtualenv/<envname>/bin/activate
 	export VIRTUAL_ENV_DISABLE_PROMPT=1
+}
+
+function long.prompt() {
+  export PS1=$PS_LONG
+}
+
+function short.prompt() {
+  export PS1=$PS_SHORT
 }
 
 function extract()      # Handy Extract Program.
 {
   if [ -f $1 ] ; then
     case $1 in
+      *.jar)       jar -xf $1      ;;
       *.tar.bz2)   tar xvjf $1     ;;
       *.tar.gz)    tar xvzf $1     ;;
       *.bz2)       bunzip2 $1      ;;
