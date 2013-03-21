@@ -43,4 +43,4 @@ alias mkv='mkvirtualenv --distribute --no-site-packages'
 # Git
 alias gs='git status'
 alias gb='git branch'
-alias gl='git lg1'
+alias gl='git lg'
