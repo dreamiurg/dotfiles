@@ -20,7 +20,10 @@ source $(dirname $0)/aliases.sh
 # configure VCS prompt
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git 
-zstyle ':vcs_info:git*' formats "[%s:%b] "
+zstyle ':vcs_info:*' unstagedstr '*'
+zstyle ':vcs_info:*' stagedstr '+'
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:git*' formats "%F{blue}[%s:%b%F{red}%u%c%F{blue}] "
 precmd() {
   vcs_info
 }
