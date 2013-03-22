@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # Globally exclude some files
 git config --global alias.st status
 git config --global alias.last "log -1 HEAD"
