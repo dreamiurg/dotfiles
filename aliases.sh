@@ -16,6 +16,10 @@ elif [[ $platform == 'macos' ]]; then
   alias ls='ls -G'
   alias l='ls -lFG'
   alias ll='ls -alFG'
+
+  if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+  fi
 fi
 
 alias rm='rm -i'
