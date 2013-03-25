@@ -3,4 +3,6 @@
 export TERM=xterm-256color
 export EDITOR=vim
 
-export PATH=/usr/local/bin:$PATH
+if [[ $platform == 'macos' ]]; then
+  export PATH=$HOME/.rvm/bin:/usr/local/bin:/usr/bin:/bin:/sbin:$PATH
+fi
