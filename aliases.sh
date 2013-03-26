@@ -1,12 +1,3 @@
-# Detect current OS
-platform='unknown'
-unamestr=`uname`
-if [[ "$unamestr" == 'Linux' ]]; then
-  platform='linux'
-elif [[ "$unamestr" == 'Darwin' ]]; then
-  platform='macos'
-fi
-
 # Filesystem operations
 if [[ $platform == 'linux' ]]; then
   alias ls='ls --color=auto'
