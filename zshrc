@@ -35,8 +35,10 @@ precmd() {
   vcs_info
 }
 
-# configure prompt
 setopt prompt_subst
-PROMPT="%F{green}%n@%m%{$reset_color%}:%F{yellow}%~ %F{blue}"'${vcs_info_msg_0_}'"%{$reset_color%}%# "
-RPROMPT=""
-LPROMPT=""
+# configure prompt
+setprompt() {
+  PROMPT="%F{green}%n@%m%{$reset_color%}:%F{yellow}%~ %F{blue}"'${vcs_info_msg_0_}'"%{$reset_color%}%# "
+  RPROMPT=""
+  LPROMPT=""
+}
