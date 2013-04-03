@@ -33,3 +33,7 @@ setopt prompt_subst
 PROMPT="%{$fg[green]%}%n@%m%{$reset_color%}:%{$fg_no_bold[yellow]%}%~ %{$fg_no_bold[blue]%}"'${vcs_info_msg_0_}'"%{$reset_color%}%# "
 RPROMPT=""
 LPROMPT=""
+
+
+unsetopt correct_all
+
