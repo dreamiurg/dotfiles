@@ -60,10 +60,20 @@ function short.prompt() {
   export PS1=$PS_SHORT
 }
 
-# define functions and aliases
-source env.sh
-source functions.sh
-source aliases.sh
+# this script dir
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# load custom settings and functions
+source $DIR/env.sh
+source $DIR/functions.sh
+source $DIR/aliases.sh
+
+# Filesystem operations
+if [[ $platform == 'macos' ]]; then
+  if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+  fi
+fi
 
 # define colors and set prompt
 __define_colors

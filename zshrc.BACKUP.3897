@@ -36,10 +36,19 @@ precmd() {
 }
 
 setopt prompt_subst
+<<<<<<< HEAD
+PROMPT="%{$fg[green]%}%n@%m%{$reset_color%}:%{$fg_no_bold[yellow]%}%~ %{$fg_no_bold[blue]%}"'${vcs_info_msg_0_}'"%{$reset_color%}%# "
+RPROMPT=""
+LPROMPT=""
+
+
 unsetopt correct_all
 
+=======
+# configure prompt
 setprompt() {
   PROMPT="%F{green}%n@%m%{$reset_color%}:%F{yellow}%~ %F{blue}"'${vcs_info_msg_0_}'"%{$reset_color%}%# "
   RPROMPT=""
   LPROMPT=""
 }
+>>>>>>> e6bf6cf155e82a50c5b6a5d8d3776739b84c6521

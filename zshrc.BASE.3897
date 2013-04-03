@@ -1,5 +1,8 @@
 #!/bin/sh
+#
 # This file contains only zsh shell-specific settings
+#
+
 
 setopt COMPLETE_IN_WORD                                                                                                             
 
@@ -7,22 +10,12 @@ setopt COMPLETE_IN_WORD
 autoload -U compinit
 compinit -i
 
-# set up colors
 autoload -U colors
 colors
 
-# load custom settings and functions
 source $(dirname $0)/env.sh
 source $(dirname $0)/functions.sh
 source $(dirname $0)/aliases.sh
-
-# set up completions
-# Filesystem operations
-if [[ $platform == 'macos' ]]; then
-  if [ -d $(brew --prefix)/share/zsh-completions ]; then
-    fpath=($(brew --prefix)/share/zsh-completions $fpath)
-  fi
-fi
 
 # configure VCS prompt
 autoload -Uz vcs_info
@@ -35,11 +28,8 @@ precmd() {
   vcs_info
 }
 
+# configure prompt
 setopt prompt_subst
-unsetopt correct_all
-
-setprompt() {
-  PROMPT="%F{green}%n@%m%{$reset_color%}:%F{yellow}%~ %F{blue}"'${vcs_info_msg_0_}'"%{$reset_color%}%# "
-  RPROMPT=""
-  LPROMPT=""
-}
+PROMPT="%{$fg[green]%}%n@%m%{$reset_color%}:%{$fg_no_bold[yellow]%}%~ %{$fg_no_bold[blue]%}"'${vcs_info_msg_0_}'"%{$reset_color%}%# "
+RPROMPT=""
+LPROMPT=""
