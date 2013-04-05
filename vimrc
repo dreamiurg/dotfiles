@@ -35,14 +35,18 @@ set wildmenu         " turn on wildmenu
 set winminheight=0   " minimum window height (FIXME)
 
 let mapleader = ","
-nnoremap / /\v
-vnoremap / /\v
+nnoremap / /\v\c
+vnoremap / /\v\c
 set ignorecase
 set smartcase
 set gdefault
 set incsearch
 set showmatch
 set hlsearch
+
+nnoremap <C-Left> :tabprevious<CR>
+nnoremap <C-Right> :tabnext<CR>
+
 
 " ,<space> will clear search highlight
 nnoremap <leader><space> :noh<cr>
@@ -92,3 +96,5 @@ autocmd WinLeave * let &l:statusline = '%<%f'
 
 " gvim colorscheme
 colorscheme Tomorrow-Night-Bright
+
+set t_Co=256

@@ -3,6 +3,9 @@
 
 setopt COMPLETE_IN_WORD                                                                                                             
 
+setopt prompt_subst
+unsetopt correct_all
+
 # Load and run compinit
 autoload -U compinit
 compinit -i
@@ -34,9 +37,6 @@ zstyle ':vcs_info:git*' formats "%F{blue}[%s:%b%F{red}%u%c%F{blue}] "
 precmd() {
   vcs_info
 }
-
-setopt prompt_subst
-unsetopt correct_all
 
 setprompt() {
   PROMPT="%F{green}%n@%m%{$reset_color%}:%F{yellow}%~ %F{blue}"'${vcs_info_msg_0_}'"%{$reset_color%}%# "
