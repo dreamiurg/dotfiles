@@ -24,7 +24,6 @@ set nowrap           " turn off line wrap
 set number           " show line numbers
 set ruler
 
-set number
 set scrolloff=3      " lines count around cursos
 set showcmd          " display incomplete commands
 set showmode
