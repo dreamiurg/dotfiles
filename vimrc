@@ -98,3 +98,6 @@ autocmd WinLeave * let &l:statusline = '%<%f'
 colorscheme Tomorrow-Night-Bright
 
 set t_Co=256
+
+" ~/.localsettings is sh, actually
+au BufNewFile,BufRead .localsettings set filetype=sh
