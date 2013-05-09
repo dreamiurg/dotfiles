@@ -24,7 +24,7 @@ set nowrap           " turn off line wrap
 set number           " show line numbers
 set ruler
 
-set relativenumber
+set number
 set scrolloff=3      " lines count around cursos
 set showcmd          " display incomplete commands
 set showmode
@@ -37,6 +37,7 @@ set winminheight=0   " minimum window height (FIXME)
 let mapleader = ","
 nnoremap / /\v\c
 vnoremap / /\v\c
+vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 set ignorecase
 set smartcase
 set gdefault

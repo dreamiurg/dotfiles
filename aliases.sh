@@ -32,3 +32,6 @@ alias mkv='mkvirtualenv --distribute --no-site-packages'
 alias gs='git status'
 alias gb='git branch'
 alias gl='git lg'
+
+alias tt='traceroute'
+alias sr='screen -r || screen'
