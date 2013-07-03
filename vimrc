@@ -20,7 +20,8 @@ set laststatus=2     " status line is always visible
 set nobackup         " do not create backup files
 set nofoldenable     " turn off folding
 set noswapfile       " do not create swap files
-set nowrap           " turn off line wrap
+"set nowrap           " turn off line wrap
+set wrap
 set number           " show line numbers
 set ruler
 

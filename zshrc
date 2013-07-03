@@ -60,3 +60,13 @@ RPROMPT=""
 LPROMPT=""
 
 PATH=$PATH:/usr/local/share/python
+
+# Set up vi mode
+#bindkey -M vicmd '^R' history-incremental-search-backward
+#function zle-line-init zle-keymap-select {
+#    RPROMPT="${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}"
+#    zle reset-prompt
+#}
+#zle -N zle-line-init
+#zle -N zle-keymap-select
+

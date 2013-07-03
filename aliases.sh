@@ -17,7 +17,7 @@ alias du='du -kh'       # Makes a more readable output.
 alias df='df -kTh'
 
 # Other
-alias h='history'
+alias h='history -1000'
 alias wi='type -a'
 alias path='echo -e ${PATH//:/\\n}'
 alias libpath='echo -e ${LD_LIBRARY_PATH//:/\\n}'
@@ -35,4 +35,4 @@ alias gb='git branch'
 alias gl='git lg'
 
 alias tt='traceroute'
-alias sr='screen -r || screen'
+alias sr='tmux attach || tmux'
