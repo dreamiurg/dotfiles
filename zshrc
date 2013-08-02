@@ -54,10 +54,10 @@ VENV="%F{red}\$(__venv_ps1 '[ve:%s] ')"
 # disable prompt modification by default ~/.virtualenv/<envname>/bin/activate
 VIRTUAL_ENV_DISABLE_PROMPT=1
 
-PROMPT="╭─ %F{green}%n@%m %{$reset_color%}%F{yellow}%~ $VENV%F{blue}"'${vcs_info_msg_0_}'"
-%{$reset_color%}╰─$ "
-RPROMPT=""
-LPROMPT=""
+precmd() { print -rP "> %F{green}%n@%m %{$reset_color%}%F{yellow}%~ $VENV%F{blue}"'${vcs_info_msg_0_}'"%{$reset_color%}" }
+export PROMPT="%# "
+export RPROMPT=""
+export LPROMPT=""
 
 PATH=$PATH:/usr/local/share/python
 
