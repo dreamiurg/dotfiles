@@ -37,9 +37,6 @@ zstyle ':vcs_info:*' unstagedstr '*'
 zstyle ':vcs_info:*' stagedstr '+'
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:git*' formats "%F{blue}[%s:%b%F{red}%u%c%F{blue}] "
-precmd() {
-  vcs_info
-}
 
 function __venv_ps1 ()
 {
@@ -54,19 +51,14 @@ VENV="%F{red}\$(__venv_ps1 '[ve:%s] ')"
 # disable prompt modification by default ~/.virtualenv/<envname>/bin/activate
 VIRTUAL_ENV_DISABLE_PROMPT=1
 
-precmd() { print -rP "> %F{green}%n@%m %{$reset_color%}%F{yellow}%~ $VENV%F{blue}"'${vcs_info_msg_0_}'"%{$reset_color%}" }
+precmd() { 
+  vcs_info
+  print -rP "%F{green}%n@%m %{$reset_color%}%F{yellow}%~ $VENV%F{blue}"'${vcs_info_msg_0_}'"%{$reset_color%}"
+}
+
 export PROMPT="%# "
 export RPROMPT=""
 export LPROMPT=""
 
 PATH=$PATH:/usr/local/share/python
-
-# Set up vi mode
-#bindkey -M vicmd '^R' history-incremental-search-backward
-#function zle-line-init zle-keymap-select {
-#    RPROMPT="${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}"
-#    zle reset-prompt
-#}
-#zle -N zle-line-init
-#zle -N zle-keymap-select
 
