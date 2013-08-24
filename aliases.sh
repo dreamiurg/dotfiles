@@ -1,9 +1,9 @@
 # Filesystem operations
 if [[ $platform == 'linux' ]]; then
-  alias ls='ls --color=auto'
-  alias l='ls -lF --color=auto'
-  alias ll='ls -alF --color=auto'
-  alias lh='ls -alhF --color=auto'
+  alias ls='ls --color=always'
+  alias l='ls -lF --color=always'
+  alias ll='ls -alF --color=always'
+  alias lh='ls -alhF --color=always'
 elif [[ $platform == 'macos' ]]; then
   alias ls='ls -G'
   alias l='ls -lFG'
@@ -17,7 +17,8 @@ alias mv='mv -i'
 alias md='mkdir -p'
 alias du='du -kh'       # Makes a more readable output.
 alias df='df -kTh'
-alias more='less'
+alias more='less -r'
+alias less='less -r'
 
 # Other
 alias g='grep'

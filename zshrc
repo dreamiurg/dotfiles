@@ -10,6 +10,11 @@ unsetopt correctall
 autoload -U compinit
 compinit -i
 
+# bind ESC-v to full-screen vim editing of command line
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
+
 # set up colors
 autoload -U colors
 colors
