@@ -6,6 +6,11 @@ setopt COMPLETE_IN_WORD
 setopt prompt_subst
 unsetopt correctall
 
+# Appends every command to the history file once it is executed
+setopt inc_append_history
+# Reloads the history whenever you use it
+setopt share_history
+
 # Load and run compinit
 autoload -U compinit
 compinit -i
