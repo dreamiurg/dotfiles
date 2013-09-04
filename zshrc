@@ -58,7 +58,7 @@ VIRTUAL_ENV_DISABLE_PROMPT=1
 
 precmd() { 
   vcs_info
-  print -rP "%F{green}%n@%m %{$reset_color%}%F{yellow}%~ $VENV%F{blue}"'${vcs_info_msg_0_}'"%{$reset_color%}"
+  print -rP "%F{red}%n%{$reset_color%}@%F{blue}%m %{$reset_color%}%F{yellow}%~ $VENV%F{blue}"'${vcs_info_msg_0_}'"%{$reset_color%}"
 }
 
 export PROMPT="%# "
