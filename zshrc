@@ -11,6 +11,14 @@ setopt inc_append_history
 # Reloads the history whenever you use it
 setopt share_history
 
+HISTSIZE=1000
+if (( ! EUID )); then
+  HISTFILE=~/.history_root
+else
+  HISTFILE=~/.history
+fi
+SAVEHIST=1000
+
 # Load and run compinit
 autoload -U compinit
 compinit -i
