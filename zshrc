@@ -195,3 +195,12 @@ fi
 
 # export PATH=$PATH:/usr/local/share/python
 
+# ---------------------------------------------------------------------
+# Local overrides
+# ---------------------------------------------------------------------
+if [[ -f $HOME/.localsettings ]]; then
+    source $HOME/.localsettings
+fi
+
+
+
