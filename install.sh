@@ -1,17 +1,17 @@
 #!/bin/sh
 
-BASHEXT="$HOME/etc/bash-ext"
+INSTALL_DIR="$HOME/.dotfiles"
 
 mv $HOME/.vim $HOME/.vim.bak
-ln -s $BASHEXT/vim $HOME/.vim
+ln -s $INSTALL_DIR/vim $HOME/.vim
 
 mv $HOME/.vimrc $HOME/.vimrc.bak
-ln -s $BASHEXT/vimrc $HOME/.vimrc
+ln -s $INSTALL_DIR/vimrc $HOME/.vimrc
 
 mv $HOME/.screenrc $HOME/.screenrc.bak
-ln -s $BASHEXT/screenrc $HOME/.screenrc
+ln -s $INSTALL_DIR/screenrc $HOME/.screenrc
 
 mv $HOME/.tmux.conf $HOME/.tmux.conf.bak
-ln -s $BASHEXT/tmux.conf $HOME/.tmux.conf
+ln -s $INSTALL_DIR/tmux.conf $HOME/.tmux.conf
 
-cat $BASHEXT/bashrc.sample >> $HOME/.bashrc
+cat $INSTALL_DIR/bashrc.sample >> $HOME/.bashrc
