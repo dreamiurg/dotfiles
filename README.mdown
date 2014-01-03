@@ -3,8 +3,8 @@ Information
 
 This is personal settings repo to share my bash aliases and custom functions between servers. Please see .bashrc.sample to get idea on how to use this approach.
 
-    mkdir ~/etc
-    git clone git://github.com/dreamiurg/bash-ext.git ~/etc/bash-ext
-    sh ~/etc/bash-ext/install.sh
+    git clone git://github.com/dreamiurg/bash-ext.git ~/.dotfiles
+    sh ~/.dotfiles/install.sh
+    sh ~/.dotfiles/git-setup.sh
 
 More information in [my article](http://demiurg.com.ua/blog/2011/03/27/using-github-to-share-personal-settings-between-servers/) (russian).
