@@ -31,7 +31,7 @@ alias sz='source ~/.zshrc'
 alias vz='vim ~/.zshrc'
 
 # Python
-alias mkv='mkvirtualenv --distribute --no-site-packages'
+alias mkv='mkvirtualenv --no-site-packages'
 
 # Git
 alias gs='git status --ignore-submodules=dirty'
