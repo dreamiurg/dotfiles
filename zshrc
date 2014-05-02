@@ -53,8 +53,7 @@ else
 fi
 SAVEHIST=1000
 
-# export TERM=xterm-256color
-export EDITOR=vim
+EDITOR=vim
 
 # ---------------------------------------------------------------------
 # Aliases
@@ -105,6 +104,7 @@ alias sr='tmux attach || tmux'
 alias h='history -1000'
 alias wi='type -a'
 alias sz='source ~/.zshrc' 
+alias vz='vim ~/.zshrc' 
 
 # ---------------------------------------------------------------------
 # Functions
@@ -145,10 +145,6 @@ if [[ $platform == 'macos' ]]; then
     if [[ -d $(brew --prefix)/share/zsh-completions ]]; then
         fpath=($(brew --prefix)/share/zsh-completions $fpath)
     fi
-
-    if [ -f $(brew --prefix)/bin/virtualenvwrapper.sh ]; then
-        source $(brew --prefix)/bin/virtualenvwrapper.sh
-    fi
 fi
 
 # ---------------------------------------------------------------------
@@ -172,30 +168,26 @@ function __venv_ps1 ()
   fi
 }
 
-export VENV="%F{red}\$(__venv_ps1 '[ve:%s] ')"
+VENV="%F{red}\$(__venv_ps1 '[ve:%s] ')"
+
 # disable prompt modification by default ~/.virtualenv/<envname>/bin/activate
-export VIRTUAL_ENV_DISABLE_PROMPT=1
+VIRTUAL_ENV_DISABLE_PROMPT=1
 
 precmd() { 
   vcs_info
   print -rP "%F{red}%n%{$reset_color%}@%F{blue}%m %{$reset_color%}%F{yellow}%~ $VENV%F{blue}"'${vcs_info_msg_0_}'"%{$reset_color%}"
 }
 
-export PROMPT="%# "
-export RPROMPT=""
-export LPROMPT=""
-
-# ---------------------------------------------------------------------
-# RVM
-# ---------------------------------------------------------------------
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+PROMPT="%# "
+RPROMPT=""
+LPROMPT=""
 
 # ---------------------------------------------------------------------
 # PATH
 # ---------------------------------------------------------------------
 
 if [[ $platform == 'macos' ]]; then
-    export PATH=/usr/local/bin:$PATH
+    PATH=/usr/local/bin:$PATH
 fi
 
 # ---------------------------------------------------------------------
@@ -205,4 +197,7 @@ if [[ -f $HOME/.localsettings ]]; then
     source $HOME/.localsettings
 fi
 
-
+# ---------------------------------------------------------------------
+# RVM - has to be at the BOTTOM !
+# ---------------------------------------------------------------------
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
