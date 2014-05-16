@@ -1,13 +1,11 @@
 #!/bin/sh
-# This file contains only zsh shell-specific settings
 
 if [[ -d $HOME/.dotfiles.d ]]; then
   for script in $HOME/.dotfiles.d/*; do
-    echo $script
+    # echo "Running $script ..."
+    source $script
   done
 fi
-
-exit 0
 
 # ---------------------------------------------------------------------
 # Options
@@ -196,13 +194,6 @@ LPROMPT=""
 
 if [[ $platform == 'macos' ]]; then
     PATH=/usr/local/bin:$PATH
-fi
-
-# ---------------------------------------------------------------------
-# Local overrides
-# ---------------------------------------------------------------------
-if [[ -f $HOME/.localsettings ]]; then
-#    source $HOME/.localsettings
 fi
 
 # ---------------------------------------------------------------------
