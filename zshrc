@@ -1,6 +1,14 @@
 #!/bin/sh
 # This file contains only zsh shell-specific settings
 
+if [[ -d $HOME/.dotfiles.d ]]; then
+  for script in $HOME/.dotfiles.d/*; do
+    echo $script
+  done
+fi
+
+exit 0
+
 # ---------------------------------------------------------------------
 # Options
 # ---------------------------------------------------------------------
@@ -194,7 +202,7 @@ fi
 # Local overrides
 # ---------------------------------------------------------------------
 if [[ -f $HOME/.localsettings ]]; then
-    source $HOME/.localsettings
+#    source $HOME/.localsettings
 fi
 
 # ---------------------------------------------------------------------
