@@ -142,8 +142,11 @@ function wii () {
     which $1 | xargs ls -l
 }
 
+function psgrep() { ps axuf | grep -v grep | grep "$@" -i --color=auto; }
+
+
 # ---------------------------------------------------------------------
-# Functions
+# Platform detection
 # ---------------------------------------------------------------------
 
 # set up zsh completions
