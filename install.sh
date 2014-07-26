@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 INSTALL_DIR="$HOME/.dotfiles"
 DOTFILES=(vim vimrc screenrc tmux.conf zshrc)
