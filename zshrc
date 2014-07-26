@@ -11,6 +11,7 @@ fi
 # Options
 # ---------------------------------------------------------------------
 setopt COMPLETE_IN_WORD
+setopt HIST_IGNORE_DUPS
 
 setopt prompt_subst
 unsetopt correctall
@@ -112,6 +113,9 @@ alias wi='type -a'
 alias sz='source ~/.zshrc' 
 alias vz='vim ~/.zshrc' 
 
+# Style
+alias beautify="astyle --style=kr --indent=spaces --indent-col1-comments --break-blocks --add-brackets --convert-tabs --max-code-length=120 --break-after-logical --pad-oper"
+
 # ---------------------------------------------------------------------
 # Functions
 # ---------------------------------------------------------------------
@@ -193,7 +197,7 @@ LPROMPT=""
 # ---------------------------------------------------------------------
 
 if [[ $platform == 'macos' ]]; then
-    PATH=/usr/local/bin:$PATH
+    PATH=$HOME/bin:/usr/local/bin:$PATH
 fi
 
 # ---------------------------------------------------------------------
