@@ -97,7 +97,10 @@ alias less='less -r'
 alias more='less -r'
 
 # Python
-alias mkv='mkvirtualenv --distribute --no-site-packages'
+if [ -f /usr/local/bin/virtualenvwrapper.sh ] ; then
+  source /usr/local/bin/virtualenvwrapper.sh
+  alias mkv='mkvirtualenv --distribute --no-site-packages'
+fi
 
 # Git
 alias gs='git status --ignore-submodules=dirty'
