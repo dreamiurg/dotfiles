@@ -106,6 +106,9 @@ fi
 alias gs='git status --ignore-submodules=dirty'
 alias gl='git lg'
 
+# Astyle FTW!
+alias astyle='astyle --indent=spaces=2 --attach-namespaces --attach-classes --attach-inlines --indent-switches --indent-preproc-define --pad-oper --pad-header --align-pointer=type --align-reference=type --add-brackets --max-code-length=120 --break-after-logical'
+
 # Network
 alias tt='traceroute'
 alias sr='tmux attach || tmux'
