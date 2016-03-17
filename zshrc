@@ -203,10 +203,12 @@ LPROMPT=""
 # ---------------------------------------------------------------------
 
 if [[ $platform == 'macos' ]]; then
-    PATH=/usr/local/bin:/usr/local/sbin:$PATH
+    PATH=$HOME:/bin:/usr/local/bin:/usr/local/sbin:$PATH
 fi
 
 # ---------------------------------------------------------------------
 # RVM - has to be at the BOTTOM !
 # ---------------------------------------------------------------------
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
+
