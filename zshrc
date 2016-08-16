@@ -69,12 +69,10 @@ EDITOR=vim
 # Filesystem operations
 if [[ $platform == 'linux' ]]; then
     alias ls='ls --color=always'
-    alias l='ls -lF --color=always' # hide .files
-    alias ll='ls -alF --color=always'
+    alias l='ls -alF --color=always'
 elif [[ $platform == 'macos' ]]; then
     alias ls='ls -G'
-    alias l='ls -lFG' # hide .files
-    alias ll='ls -AlFG'
+    alias l='ls -AlFG'
 fi
 
 # File system operations
@@ -105,6 +103,7 @@ fi
 # Git
 alias gs='git status --ignore-submodules=dirty'
 alias gl='git lg'
+alias gla='git lg --all'
 
 # Astyle FTW!
 alias astyle='astyle --indent=spaces=2 --attach-namespaces --attach-classes --attach-inlines --indent-switches --indent-preproc-define --pad-oper --pad-header --align-pointer=type --align-reference=type --add-brackets --max-code-length=120 --break-after-logical'
@@ -205,3 +204,5 @@ LPROMPT=""
 if [[ $platform == 'macos' ]]; then
     PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
 fi
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
