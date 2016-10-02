@@ -72,7 +72,7 @@ if [[ $platform == 'linux' ]]; then
     alias l='ls -alF --color=always'
 elif [[ $platform == 'macos' ]]; then
     alias ls='ls -G'
-    alias l='ls -AlFG'
+    alias l='ls -alFG'
 fi
 
 # File system operations
@@ -97,13 +97,13 @@ alias more='less -r'
 # Python
 if [ -f /usr/local/bin/virtualenvwrapper.sh ] ; then
   source /usr/local/bin/virtualenvwrapper.sh
-  alias mkv='mkvirtualenv --distribute --no-site-packages'
+  alias mkv='mkvirtualenv'
 fi
 
 # Git
-alias gs='git status --ignore-submodules=dirty'
+alias gs='git st'
 alias gl='git lg'
-alias gla='git lg --all'
+alias gla='git lga'
 
 # Astyle FTW!
 alias astyle='astyle --indent=spaces=2 --attach-namespaces --attach-classes --attach-inlines --indent-switches --indent-preproc-define --pad-oper --pad-header --align-pointer=type --align-reference=type --add-brackets --max-code-length=120 --break-after-logical'
@@ -206,3 +206,4 @@ if [[ $platform == 'macos' ]]; then
 fi
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
+
