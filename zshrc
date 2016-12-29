@@ -97,7 +97,6 @@ alias more='less -r'
 # Python
 if [ -f /usr/local/bin/virtualenvwrapper.sh ] ; then
   source /usr/local/bin/virtualenvwrapper.sh
-  alias mkv='mkvirtualenv'
 fi
 
 # Git
@@ -204,6 +203,4 @@ LPROMPT=""
 if [[ $platform == 'macos' ]]; then
     PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
 fi
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
 
