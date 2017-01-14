@@ -8,6 +8,7 @@ set modelines=0
 
 syntax on
 
+set paste
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
