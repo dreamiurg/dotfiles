@@ -167,11 +167,15 @@ fi
 
 # configure VCS prompt
 autoload -Uz vcs_info
-zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:*' enable git hg
 zstyle ':vcs_info:*' unstagedstr '*'
 zstyle ':vcs_info:*' stagedstr '+'
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:git*' formats "%F{blue}[%s:%b%F{red}%u%c%F{blue}] "
+zstyle ':vcs_info:hg*:*' get-bookmarks true
+zstyle ':vcs_info:hg*:netbeans' use-simple true
+zstyle ':vcs_info:hg*' formats "%F{blue}[%s:%b%F{red}%u%c%F{blue}] "
+zstyle ':vcs_info:hg*' actionformats "%F{blue}[%s|%a:%b%F{red}%u%c%F{blue}] "
 
 function __venv_ps1 ()
 {
@@ -204,3 +208,12 @@ if [[ $platform == 'macos' ]]; then
     PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
 fi
 
+export FBANDROID_DIR=/Users/dmitryg/fbsource/fbandroid
+alias quicklog_update=/Users/dmitryg/fbsource/fbandroid/scripts/quicklog/quicklog_update.sh
+alias qlu=quicklog_update
+
+# added by setup_fb4a.sh
+export ANDROID_SDK=/opt/android_sdk
+export ANDROID_NDK_REPOSITORY=/opt/android_ndk
+export ANDROID_HOME=${ANDROID_SDK}
+export PATH=${PATH}:${ANDROID_SDK}/tools:${ANDROID_SDK}/platform-tools
