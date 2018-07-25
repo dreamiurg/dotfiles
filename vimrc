@@ -20,7 +20,7 @@ set hidden
 set incsearch        " do incremental searching
 set laststatus=2     " status line is always visible
 set nobackup         " do not create backup files
-set nofoldenable     " turn off folding
+"ddset nofoldenable     " turn off folding
 set noswapfile       " do not create swap files
 "set nowrap           " turn off line wrap
 set wrap
