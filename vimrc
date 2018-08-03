@@ -1,3 +1,5 @@
+source $LOCAL_ADMIN_SCRIPTS/master.vimrc
+
 filetype off
 call pathogen#runtime_append_all_bundles()
 set rtp+=/usr/local/Cellar/go/1.0.3/misc/vim
@@ -104,3 +106,4 @@ set t_Co=256
 
 " ~/.localsettings is sh, actually
 au BufNewFile,BufRead .localsettings set filetype=sh
+
