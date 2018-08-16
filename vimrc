@@ -1,4 +1,6 @@
-source $LOCAL_ADMIN_SCRIPTS/master.vimrc
+if filereadable("$LOCAL_ADMIN_SCRIPTS/master.vimrc")
+  source $LOCAL_ADMIN_SCRIPTS/master.vimrc
+endif
 
 filetype off
 call pathogen#runtime_append_all_bundles()
