@@ -215,7 +215,7 @@ precmd() {
   print -rP "%F{red}%n%{$reset_color%}@%F{blue}%m %{$reset_color%}%F{yellow}%~ $VENV%F{blue}"'${vcs_info_msg_0_}'"%{$reset_color%}"
 }
 
-PROMPT="%# "
+PROMPT="%(?.%#.%F{red}%#%{$reset_color%}) "
 RPROMPT=""
 LPROMPT=""
 
