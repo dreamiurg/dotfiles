@@ -1,3 +1,7 @@
+if filereadable("$LOCAL_ADMIN_SCRIPTS/master.vimrc")
+  source $LOCAL_ADMIN_SCRIPTS/master.vimrc
+endif
+
 filetype off
 call pathogen#runtime_append_all_bundles()
 set rtp+=/usr/local/Cellar/go/1.0.3/misc/vim
@@ -20,7 +24,7 @@ set hidden
 set incsearch        " do incremental searching
 set laststatus=2     " status line is always visible
 set nobackup         " do not create backup files
-set nofoldenable     " turn off folding
+"ddset nofoldenable     " turn off folding
 set noswapfile       " do not create swap files
 "set nowrap           " turn off line wrap
 set wrap
@@ -104,3 +108,4 @@ set t_Co=256
 
 " ~/.localsettings is sh, actually
 au BufNewFile,BufRead .localsettings set filetype=sh
+

@@ -167,15 +167,34 @@ fi
 
 # configure VCS prompt
 autoload -Uz vcs_info
-zstyle ':vcs_info:*' enable git hg
+zstyle ':vcs_info:*' enable hg git 
+
 zstyle ':vcs_info:*' unstagedstr '*'
 zstyle ':vcs_info:*' stagedstr '+'
-zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:git*' formats "%F{blue}[%s:%b%F{red}%u%c%F{blue}] "
-zstyle ':vcs_info:hg*:*' get-bookmarks true
+
+zstyle ':vcs_info:(hg*|git*):*' get-revision true
+zstyle ':vcs_info:(hg*|git*):*' check-for-changes true
+
+# rev+changes branch misc
+zstyle ':vcs_info:hg*' formats "[%s:%i%F{red}%u%F{blue} %b %m]"
+zstyle ':vcs_info:hg*' actionformats "[%s|%a:%i%F{red}%u%F{blue} %b %m]"
+
+# hash changes branch misc
+zstyle ':vcs_info:git*' formats "[%s:%12.12i %F{red}%u%F{blue} %b %m]"
+zstyle ':vcs_info:git*' actionformats "[%s|%a:%12.12i %F{red}%u%F{blue} %b %m]"
+
 zstyle ':vcs_info:hg*:netbeans' use-simple true
-zstyle ':vcs_info:hg*' formats "%F{blue}[%s:%b%F{red}%u%c%F{blue}] "
-zstyle ':vcs_info:hg*' actionformats "%F{blue}[%s|%a:%b%F{red}%u%c%F{blue}] "
+
+zstyle ':vcs_info:hg*:*' get-bookmarks true
+
+zstyle ':vcs_info:hg*:*' get-mq true
+zstyle ':vcs_info:hg*:*' get-unapplied true
+zstyle ':vcs_info:hg*:*' patch-format "mq(%g):%n/%c %p"
+zstyle ':vcs_info:hg*:*' nopatch-format "mq(%g):%n/%c %p"
+
+zstyle ':vcs_info:hg*:*' unstagedstr "+"
+zstyle ':vcs_info:hg*:*' hgrevformat "%r" # only show local rev.
+zstyle ':vcs_info:hg*:*' branchformat "%b" # only show branch
 
 function __venv_ps1 ()
 {
@@ -196,7 +215,7 @@ precmd() {
   print -rP "%F{red}%n%{$reset_color%}@%F{blue}%m %{$reset_color%}%F{yellow}%~ $VENV%F{blue}"'${vcs_info_msg_0_}'"%{$reset_color%}"
 }
 
-PROMPT="%# "
+PROMPT="%(?.%#.%F{red}%#%{$reset_color%}) "
 RPROMPT=""
 LPROMPT=""
 
@@ -217,3 +236,5 @@ export ANDROID_SDK=/opt/android_sdk
 export ANDROID_NDK_REPOSITORY=/opt/android_ndk
 export ANDROID_HOME=${ANDROID_SDK}
 export PATH=${PATH}:${ANDROID_SDK}/tools:${ANDROID_SDK}/platform-tools
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
