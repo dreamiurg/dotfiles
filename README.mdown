@@ -3,7 +3,7 @@ Information
 
 This is personal settings repo to share my bash aliases and custom functions between servers. Please see .bashrc.sample to get idea on how to use this approach.
 
-    git clone git://github.com/dreamiurg/dotfiles.git ~/.dotfiles
+    git clone https://github.com/dreamiurg/dotfiles.git ~/.dotfiles
     ~/.dotfiles/install.sh
 
 More information in [my article](http://dreamiurg.net/2011/03/27/using-github-to-share-personal-settings-between-servers/).
