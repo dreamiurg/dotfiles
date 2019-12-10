@@ -2,6 +2,10 @@
 
 INSTALL_DIR="$HOME/.dotfiles"
 
+# Basics
+git config --global user.name "Dmitry Guyvoronsky"
+git config --global user.email "the@dreamiurg.net"
+
 # Globally exclude some files
 git config --global alias.st 'status --short --branch'
 git config --global alias.last "log -1 HEAD"
