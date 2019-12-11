@@ -223,8 +223,10 @@ LPROMPT=""
 # PATH
 # ---------------------------------------------------------------------
 
+export PYENV_ROOT="$HOME/.pyenv"
+
 if [[ $platform == 'macos' ]]; then
-    PATH=$HOME/bin:$HOME/Library/Python/3.7/bin:/usr/local/bin:/usr/local/sbin:$PATH
+    PATH="$PYENV_ROOT/bin:/usr/local/bin:/usr/local/sbin:$PATH"
 fi
 
 export FBANDROID_DIR=/Users/dmitryg/fbsource/fbandroid
