@@ -100,7 +100,7 @@ if [ -f /usr/local/bin/virtualenvwrapper.sh ] ; then
 fi
 
 # Git
-alias gs='git st'
+alias gs='git status'
 alias gl='git lg'
 alias gla='git lga'
 
@@ -220,23 +220,21 @@ RPROMPT=""
 LPROMPT=""
 
 # ---------------------------------------------------------------------
+# rbenv
+# ---------------------------------------------------------------------
+eval "$(rbenv init -)"
+
+# ---------------------------------------------------------------------
 # PATH
 # ---------------------------------------------------------------------
 
 export PYENV_ROOT="$HOME/.pyenv"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
 if [[ $platform == 'macos' ]]; then
-    PATH="$PYENV_ROOT/bin:/usr/local/bin:/usr/local/sbin:$PATH"
+    PATH="$PYENV_ROOT/shims:/usr/local/bin:/usr/local/sbin:$PATH"
 fi
 
-export FBANDROID_DIR=/Users/dmitryg/fbsource/fbandroid
-alias quicklog_update=/Users/dmitryg/fbsource/fbandroid/scripts/quicklog/quicklog_update.sh
-alias qlu=quicklog_update
-
-# added by setup_fb4a.sh
-export ANDROID_SDK=/opt/android_sdk
-export ANDROID_NDK_REPOSITORY=/opt/android_ndk
-export ANDROID_HOME=${ANDROID_SDK}
-export PATH=${PATH}:${ANDROID_SDK}/tools:${ANDROID_SDK}/platform-tools
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+PATH=$HOME/bin:$PATH
