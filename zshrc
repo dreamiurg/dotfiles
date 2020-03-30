@@ -100,9 +100,11 @@ if [ -f /usr/local/bin/virtualenvwrapper.sh ] ; then
 fi
 
 # Git
+export GIT_EDITOR='vim'
 alias gs='git status'
 alias gl='git lg'
 alias gla='git lga'
+alias gb='git branch'
 
 # Astyle FTW!
 alias astyle='astyle --indent=spaces=2 --attach-namespaces --attach-classes --attach-inlines --indent-switches --indent-preproc-define --pad-oper --pad-header --align-pointer=type --align-reference=type --add-brackets --max-code-length=120 --break-after-logical'
@@ -238,3 +240,8 @@ if [[ $platform == 'macos' ]]; then
 fi
 
 PATH=$HOME/bin:$PATH
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/terraform terraform
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
