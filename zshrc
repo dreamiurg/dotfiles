@@ -105,15 +105,16 @@ alias gs='git status'
 alias gl='git lg'
 alias gla='git lga'
 alias gb='git branch'
+alias git-delete-merged-branches='git fetch --all && git branch --merged master --no-color | grep -v "\* master" | xargs -n 1 git branch -d'
 
 # Astyle FTW!
 alias astyle='astyle --indent=spaces=2 --attach-namespaces --attach-classes --attach-inlines --indent-switches --indent-preproc-define --pad-oper --pad-header --align-pointer=type --align-reference=type --add-brackets --max-code-length=120 --break-after-logical'
 
 # Network
 alias tt='traceroute'
-alias sr='tmux attach || tmux'
 
 # Misc
+alias sr='tmux attach || tmux'
 alias h='history -1000'
 alias wi='type -a'
 alias sz='source ~/.zshrc' 
@@ -245,3 +246,5 @@ autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/terraform terraform
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+. /usr/local/etc/profile.d/z.sh
