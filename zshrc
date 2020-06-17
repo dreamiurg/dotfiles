@@ -228,14 +228,17 @@ LPROMPT=""
 eval "$(rbenv init -)"
 
 # ---------------------------------------------------------------------
-# PATH
+# pyenv
 # ---------------------------------------------------------------------
-
 export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
 
+# ---------------------------------------------------------------------
+# PATH
+# ---------------------------------------------------------------------
 if [[ $platform == 'macos' ]]; then
     PATH="$PYENV_ROOT/shims:/usr/local/bin:/usr/local/sbin:$PATH"
 fi
