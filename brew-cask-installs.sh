@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# Before aboslute basics
+brew install pyenv
+brew install pyenv-virtualenvwrapper
+
 # Absolute basics
 brew cask install dropbox
 brew cask install alfred
