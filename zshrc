@@ -238,7 +238,7 @@ if [[ $platform == 'macos' ]]; then
     PATH="$PYENV_ROOT/shims:/usr/local/bin:/usr/local/sbin:$PATH"
 fi
 
-PATH=$HOME/bin:$PATH
+PATH=$HOME/bin:$HOME/.tfenv/bin:$PATH
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/terraform terraform
