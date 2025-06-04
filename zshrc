@@ -1,9 +1,8 @@
-#!/bin/sh
+#!/usr/bin/env zsh
 
-if [[ -d $HOME/.dotfiles.d ]]; then
-  for script in $HOME/.dotfiles.d/*; do
-    # echo "Running $script ..."
-    source $script
+if [[ -d "$HOME/.dotfiles.d" ]]; then
+  for script in "$HOME/.dotfiles.d"/*; do
+    [ -f "$script" ] && source "$script"
   done
 fi
 
@@ -43,13 +42,11 @@ bindkey -M vicmd v edit-command-line
 # ---------------------------------------------------------------------
 
 # Detect current OS
-platform='unknown'
-unamestr=`uname`
-if [[ "$unamestr" == 'Linux' ]]; then
-    platform='linux'
-elif [[ "$unamestr" == 'Darwin' ]]; then
-    platform='macos'
-fi
+case "$(uname)" in
+  Linux)   platform='linux' ;;
+  Darwin)  platform='macos' ;;
+  *)       platform='unknown' ;;
+esac
 
 # save root history in a separate file
 HISTSIZE=1000
@@ -105,10 +102,20 @@ alias gs='git status'
 alias gl='git lg'
 alias gla='git lga'
 alias gb='git branch'
-alias git-delete-merged-branches='git fetch --all && git branch --merged master --no-color | grep -v "\* master" | xargs -n 1 git branch -d'
+
+git-delete-merged-branches() {
+  git fetch --all
+  git branch --merged master --no-color | \
+    grep -v "\* master" | xargs -n 1 git branch -d
+}
 
 # Astyle FTW!
-alias astyle='astyle --indent=spaces=2 --attach-namespaces --attach-classes --attach-inlines --indent-switches --indent-preproc-define --pad-oper --pad-header --align-pointer=type --align-reference=type --add-brackets --max-code-length=120 --break-after-logical'
+alias astyle='astyle --indent=spaces=2 \
+  --attach-namespaces --attach-classes --attach-inlines \
+  --indent-switches --indent-preproc-define \
+  --pad-oper --pad-header --align-pointer=type \
+  --align-reference=type --add-brackets \
+  --max-code-length=120 --break-after-logical'
 
 # Network
 alias tt='traceroute'
@@ -123,34 +130,37 @@ alias vz='vim ~/.zshrc'
 # ---------------------------------------------------------------------
 # Functions
 # ---------------------------------------------------------------------
-function extract()      # Handy Extract Program.
-{
-    if [ -f $1 ] ; then
-        case $1 in
-            *.jar)       jar -xf $1      ;;
-            *.tar.bz2)   tar xvjf $1     ;;
-            *.tar.gz)    tar xvzf $1     ;;
-            *.bz2)       bunzip2 $1      ;;
-            *.rar)       unrar x $1      ;;
-            *.gz)        gunzip $1       ;;
-            *.tar)       tar xvf $1      ;;
-            *.tbz2)      tar xvjf $1     ;;
-            *.tgz)       tar xvzf $1     ;;
-            *.zip)       unzip $1        ;;
-            *.Z)         uncompress $1   ;;
-            *.7z)        7z x $1         ;;
-            *)           echo "'$1' cannot be extracted via >extract<" ;;
-        esac
-    else
-        echo "'$1' is not a valid file"
-    fi
+# Handy extract program
+extract() {
+  local file=$1
+  if [[ -f "$file" ]]; then
+    case "$file" in
+      *.jar)     jar -xf "$file"      ;;
+      *.tar.bz2) tar xvjf "$file"     ;;
+      *.tar.gz)  tar xvzf "$file"     ;;
+      *.bz2)     bunzip2 "$file"      ;;
+      *.rar)     unrar x "$file"      ;;
+      *.gz)      gunzip "$file"       ;;
+      *.tar)     tar xvf "$file"      ;;
+      *.tbz2)    tar xvjf "$file"     ;;
+      *.tgz)     tar xvzf "$file"     ;;
+      *.zip)     unzip "$file"        ;;
+      *.Z)       uncompress "$file"   ;;
+      *.7z)      7z x "$file"         ;;
+      *)         echo "'$file' cannot be extracted via >extract<" ;;
+    esac
+  else
+    echo "'$file' is not a valid file"
+  fi
 }
 
-function wii () {
-    which $1 | xargs ls -l
+wii() {
+  which -- "$1" | xargs ls -l
 }
 
-function psgrep() { ps axuf | grep -v grep | grep "$@" -i --color=auto; }
+psgrep() {
+  ps axuf | grep -v grep | grep -i --color=auto "$@"
+}
 
 
 # ---------------------------------------------------------------------
