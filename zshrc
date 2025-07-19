@@ -103,11 +103,12 @@ alias gl='git lg'
 alias gla='git lga'
 alias gb='git branch'
 
-git-delete-merged-branches() {
+function git_delete_merged_branches {
   git fetch --all
   git branch --merged master --no-color | \
     grep -v "\* master" | xargs -n 1 git branch -d
 }
+alias git-delete-merged-branches=git_delete_merged_branches
 
 # Astyle FTW!
 alias astyle='astyle --indent=spaces=2 \
