@@ -158,6 +158,28 @@ wii() {
   which -- "$1" | xargs ls -l
 }
 
+unextract() {
+  if [[ $# -ne 1 ]]; then
+    echo "Usage: unextract <directory>"
+    return 1
+  fi
+
+  local dir="$1"
+  local zipfile="${dir%/}.zip"
+
+  if [[ ! -d "$dir" ]]; then
+    echo "Error: '$dir' is not a directory"
+    return 1
+  fi
+
+  echo "Zipping '$dir' into '$zipfile'..."
+  zip -r "$zipfile" "$dir"
+}
+
+function wii () {
+    which $1 | xargs ls -l
+}
+
 psgrep() {
   ps axuf | grep -v grep | grep -i --color=auto "$@"
 }
@@ -255,10 +277,17 @@ complete -o nospace -C /usr/local/bin/terraform terraform
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-. /usr/local/etc/profile.d/z.sh
+# ---------------------------------------------------------------------
+# z.sh (only if the file exists)
+# ---------------------------------------------------------------------
+if [[ -f /usr/local/etc/profile.d/z.sh ]]; then
+  . /usr/local/etc/profile.d/z.sh
+fi
 
 # ---------------------------------------------------------------------
-# rbenv
+# rbenv (only if installed)
 # ---------------------------------------------------------------------
-export RBENV_ROOT=/usr/local/var/rbenv
-eval "$(rbenv init -)"
+if command -v rbenv >/dev/null 2>&1; then
+  export RBENV_ROOT=/usr/local/var/rbenv
+  eval "$(rbenv init -)"
+fi
