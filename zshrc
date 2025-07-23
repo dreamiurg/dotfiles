@@ -192,8 +192,10 @@ psgrep() {
 
 # set up zsh completions
 if [[ $platform == 'macos' ]]; then
-    if [[ -d $(brew --prefix)/share/zsh-completions ]]; then
-        fpath=($(brew --prefix)/share/zsh-completions $fpath)
+    if command -v brew >/dev/null 2>&1; then
+        if [[ -d $(brew --prefix)/share/zsh-completions ]]; then
+            fpath=($(brew --prefix)/share/zsh-completions $fpath)
+        fi
     fi
 fi
 
@@ -256,25 +258,32 @@ RPROMPT=""
 LPROMPT=""
 
 # ---------------------------------------------------------------------
-# pyenv
+# pyenv (only if installed)
 # ---------------------------------------------------------------------
-export PYENV_ROOT="$HOME/.pyenv"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
+if command -v pyenv >/dev/null 2>&1; then
+  export PYENV_ROOT="$HOME/.pyenv"
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+  export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+  export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
+  if [[ $platform == 'macos' ]]; then
+    PATH="$PYENV_ROOT/shims:/usr/local/bin:/usr/local/sbin:$PATH"
+  fi
+else
+  if [[ $platform == 'macos' ]]; then
+    PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+  fi
+fi
 
 # ---------------------------------------------------------------------
 # PATH
 # ---------------------------------------------------------------------
-if [[ $platform == 'macos' ]]; then
-    PATH="$PYENV_ROOT/shims:/usr/local/bin:/usr/local/sbin:$PATH"
-fi
-
 PATH=$HOME/bin:$HOME/.tfenv/bin:$PATH
 
 autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/local/bin/terraform terraform
+if command -v terraform >/dev/null 2>&1; then
+  complete -o nospace -C $(command -v terraform) terraform
+fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
