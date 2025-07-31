@@ -298,6 +298,6 @@ fi
 # rbenv (only if installed)
 # ---------------------------------------------------------------------
 if command -v rbenv >/dev/null 2>&1; then
-  export RBENV_ROOT=/usr/local/var/rbenv
+  export RBENV_ROOT="${RBENV_ROOT:-$HOME/.rbenv}"
   eval "$(rbenv init -)"
 fi
