@@ -104,9 +104,60 @@ alias gla='git lga'
 alias gb='git branch'
 
 function git_delete_merged_branches {
+  local force=false
+  if (( $# > 0 )); then
+    if [[ $1 == "-f" ]]; then
+      force=true
+      shift
+    fi
+  fi
+  if (( $# > 0 )); then
+    echo "Usage: git_delete_merged_branches [-f]" >&2
+    return 2
+  fi
+
+  if ! git rev-parse --git-dir >/dev/null 2>&1; then
+    echo "git_delete_merged_branches: not inside a git repository" >&2
+    return 1
+  fi
+
+  local default_branch
+  default_branch=$(git symbolic-ref --quiet --short refs/remotes/origin/HEAD 2>/dev/null)
+  if [[ -n "$default_branch" ]]; then
+    default_branch=${default_branch#origin/}
+  else
+    default_branch=$(git symbolic-ref --quiet --short HEAD 2>/dev/null)
+    [[ -z "$default_branch" ]] && default_branch="master"
+  fi
+
   git fetch --all
-  git branch --merged master --no-color | \
-    grep -v "\* master" | xargs -n 1 git branch -d
+
+  local -a merged_branches prunable_branches
+  local merged_output
+  merged_output=$(git branch --merged "$default_branch" --format '%(refname:short)')
+  merged_branches=(${(f)merged_output})
+  local branch
+  for branch in $merged_branches; do
+    [[ -z "$branch" || "$branch" == "$default_branch" || "$branch" == "HEAD" ]] && continue
+    prunable_branches+=("$branch")
+  done
+
+  if (( ${#prunable_branches} == 0 )); then
+    echo "git_delete_merged_branches: no merged branches to prune"
+    return 0
+  fi
+
+  echo "git_delete_merged_branches: branches merged into '$default_branch':"
+  printf '  %s\n' $prunable_branches
+
+  if [[ $force == false ]]; then
+    echo "git_delete_merged_branches: dry run (pass -f to delete)"
+    return 0
+  fi
+
+  for branch in $prunable_branches; do
+    git branch -d "$branch"
+  done
 }
 alias git-delete-merged-branches=git_delete_merged_branches
 
