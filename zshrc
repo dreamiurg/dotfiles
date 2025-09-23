@@ -269,8 +269,21 @@ zstyle ':vcs_info:hg*' formats "[%s:%i%F{red}%u%F{blue} %b %m]"
 zstyle ':vcs_info:hg*' actionformats "[%s|%a:%i%F{red}%u%F{blue} %b %m]"
 
 # hash changes branch misc
-zstyle ':vcs_info:git*' formats "[%s:%12.12i %F{red}%u%F{blue} %b %m]"
-zstyle ':vcs_info:git*' actionformats "[%s|%a:%12.12i %F{red}%u%F{blue} %b %m]"
+zstyle ':vcs_info:git*' formats "[%s:%i %F{red}%u%F{blue} %b %m]"
+zstyle ':vcs_info:git*' actionformats "[%s|%a:%i %F{red}%u%F{blue} %b %m]"
+zstyle ':vcs_info:git*+set-message:*' hooks git-short-sha
+
+# shorten git revision displayed in the prompt
+function +vi-git-short-sha() {
+  if [[ -n ${hook_com[revision]} ]]; then
+    hook_com[revision]=${hook_com[revision][1,7]}
+  fi
+
+  if [[ -n ${hook_com[message]} ]]; then
+    hook_com[message]=${hook_com[message]//\[[[:space:]]##/\[}
+    hook_com[message]=${hook_com[message]//[[:space:]]##\]/]}
+  fi
+}
 
 zstyle ':vcs_info:hg*:netbeans' use-simple true
 
