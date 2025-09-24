@@ -89,6 +89,9 @@ alias mnt='mount | column -t | sort -k 3 -d'
 alias libpath='echo -e ${LD_LIBRARY_PATH//:/\\n}'
 alias path='echo -e ${PATH//:/\\n}'
 
+# Codex helpers
+alias codex-commit-message='codex -s read-only -c reasoning.effort="low" exec "Review the staged changes via `git diff --staged` and reply with a concise, imperative one-line git commit message summarizing them in simple past tense."'
+
 # Viewers
 alias less='less -r'
 alias more='less -r'
