@@ -298,21 +298,105 @@ zstyle ':vcs_info:hg*:*' unstagedstr "+"
 zstyle ':vcs_info:hg*:*' hgrevformat "%r" # only show local rev.
 zstyle ':vcs_info:hg*:*' branchformat "%b" # only show branch
 
-function __venv_ps1 ()
-{
-  local VENV=""
-  if [ -n "$VIRTUAL_ENV" ]; then
-    v=`basename "${VIRTUAL_ENV}"`
-    printf -- "${1}" "$v"
+function __trim_whitespace() {
+  local str="$1"
+  str=${str##[[:space:]]#}
+  str=${str%%[[:space:]]#}
+  printf '%s' "$str"
+}
+
+function __python_version_from_cfg() {
+  local cfg="$1"
+  [[ -f "$cfg" ]] || return 1
+
+  local line
+  while IFS= read -r line; do
+    [[ -z "$line" ]] && continue
+    if [[ "$line" == "version ="* ]]; then
+      local version=${line#*=}
+      version=$(__trim_whitespace "$version")
+      [[ -n "$version" ]] && print -r -- "$version" && return 0
+    fi
+  done < "$cfg"
+}
+
+function __uv_project_root() {
+  command -v uv >/dev/null 2>&1 || return 1
+
+  local dir="$PWD"
+  while [[ "$dir" != "/" ]]; do
+    if [[ -f "$dir/uv.lock" || -f "$dir/uv.toml" ]]; then
+      print -r -- "$dir"
+      return 0
+    fi
+    dir="${dir:h}"
+  done
+  return 1
+}
+
+function __python_prompt_info() {
+  local prefix=""
+  local env_dir=""
+  local env_name=""
+  local version=""
+
+  if [[ -n "$VIRTUAL_ENV" ]]; then
+    prefix="ve"
+    env_dir="$VIRTUAL_ENV"
+    env_name="${env_dir:t}"
+  else
+    local uv_root
+    uv_root=$(__uv_project_root 2>/dev/null) || uv_root=""
+    if [[ -n "$uv_root" ]]; then
+      prefix="uv"
+      if [[ -d "$uv_root/.venv" ]]; then
+        env_dir="$uv_root/.venv"
+        env_name="${env_dir:t}"
+      else
+        env_name="${uv_root:t}"
+        if [[ -f "$uv_root/.python-version" ]]; then
+          read -r version < "$uv_root/.python-version"
+          version=$(__trim_whitespace "$version")
+          [[ "$version" == *@* ]] && version="${version##*@}"
+        fi
+        if [[ -z "$version" ]]; then
+          local python_path
+          python_path=$(uv python find --project "$uv_root" 2>/dev/null)
+          if [[ -n "$python_path" ]]; then
+            version=$("$python_path" -c 'import platform; print(platform.python_version())' 2>/dev/null)
+          fi
+        fi
+      fi
+    fi
+  fi
+
+  if [[ -n "$env_dir" ]]; then
+    version=$(__python_version_from_cfg "$env_dir/pyvenv.cfg")
+    if [[ -z "$version" && -x "$env_dir/bin/python" ]]; then
+      version=$("$env_dir/bin/python" -c 'import platform; print(platform.python_version())' 2>/dev/null)
+    fi
+  fi
+
+  if [[ -n "$prefix" ]]; then
+    local segment="%F{red}[${prefix}"
+    if [[ -n "$env_name" ]]; then
+      segment+=":${env_name}"
+    fi
+    if [[ -n "$version" ]]; then
+      segment+=" py${version}"
+    fi
+    segment+="]"
+    segment+="%{$reset_color%} "
+    print -rn -- "$segment"
   fi
 }
 
-VENV="%F{red}\$(__venv_ps1 '[ve:%s] ')"
+VENV="\$(__python_prompt_info)"
 
 # disable prompt modification by default ~/.virtualenv/<envname>/bin/activate
 VIRTUAL_ENV_DISABLE_PROMPT=1
 
-precmd() { 
+precmd() {
   vcs_info
   print -rP "%F{red}%n%{$reset_color%}@%F{blue}%m %{$reset_color%}%F{yellow}%~ $VENV%F{blue}"'${vcs_info_msg_0_}'"%{$reset_color%}"
 }
