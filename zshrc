@@ -19,6 +19,8 @@ unsetopt correctall
 setopt inc_append_history
 # Reloads the history whenever you use it
 setopt share_history
+# Ignore commands prefixed with a space when saving history
+setopt HIST_IGNORE_SPACE
 
 # ---------------------------------------------------------------------
 # Modules
