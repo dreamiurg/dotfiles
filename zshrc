@@ -274,8 +274,8 @@ zstyle ':vcs_info:hg*' formats "[%s:%i%F{red}%u%F{blue} %b %m]"
 zstyle ':vcs_info:hg*' actionformats "[%s|%a:%i%F{red}%u%F{blue} %b %m]"
 
 # hash changes branch misc
-zstyle ':vcs_info:git*' formats "[%s:%i %F{red}%u%F{blue} %b %m]"
-zstyle ':vcs_info:git*' actionformats "[%s|%a:%i %F{red}%u%F{blue} %b %m]"
+zstyle ':vcs_info:git*' formats "[%s:%i %F{green}%c%F{red}%u%F{blue} %b %m]"
+zstyle ':vcs_info:git*' actionformats "[%s|%a:%i %F{green}%c%F{red}%u%F{blue} %b %m]"
 zstyle ':vcs_info:git*+set-message:*' hooks git-short-sha
 
 # shorten git revision displayed in the prompt
@@ -455,4 +455,6 @@ if command -v rbenv >/dev/null 2>&1; then
   eval "$(rbenv init -)"
 fi
 
-. "$HOME/.local/bin/env"
+if [[ -f "$HOME/.local/bin/env" ]]; then
+  . "$HOME/.local/bin/env"
+fi
