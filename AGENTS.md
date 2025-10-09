@@ -15,5 +15,13 @@ There is no automated harness. After changes, dry-run `./install.sh` in a temp h
 ## Commit & Pull Request Guidelines
 Start each change on a dedicated feature branch (or the shared `dev` branch) instead of committing directly to `master`, and land updates through a pull request. History shows concise, imperative commit subjects (e.g., `fix rbenv init permissions`). Follow that format and scope one logical change per commit. Pull requests should explain the motivation, list affected dotfiles, and include per-file change bullets (e.g., ``- zshrc adds staged-count coloring``) that spell out what changed and why. Attach any screenshots or terminal clips if a visual theme changes, link related issues or TODOs, and note manual validation steps so reviewers can reproduce them quickly.
 
+### AI Commit Message Style Guide
+
+- **Format**: `<prefix>: <past-tense summary>` (no trailing punctuation, ≤60 characters).
+- **Prefixes**: `feat` (feature), `fix` (bug), `refactor` (logic reshuffle), `docs`, `style`, `test`, `build` (tooling/deps), `ci`, `perf`, `chore` (maintenance). Pick the one that best fits the change.
+- **Subject**: write in simple past tense, describe what changed, avoid vague phrasing.
+- **Body**: add only when extra context or rationale is needed; keep it short and focused on the “why.”
+- **Examples**: `feat: added dark mode toggle`, `fix: corrected timeout handling`, `docs: documented environment setup`.
+
 ## Security & Configuration Tips
 Avoid committing personal secrets or machine identifiers; rely on local overrides sourced from `zshrc` when needed. When adding new bootstrap commands, prefer idempotent checks (`command -v delta >/dev/null || brew install git-delta`) to keep first-run scripts safe for repeated execution.
